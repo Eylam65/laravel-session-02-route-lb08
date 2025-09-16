@@ -46,3 +46,13 @@ Route::match(['get','post'],'/feedback',function(\Illuminate\Http\Request $reque
     }
     return view('feedback');
 });
+
+
+Route::get('/contact',function(){
+    return view('contact');
+});
+
+Route::post('submit-contact', function (Request $request){
+    $name = $request->input('name');
+    return "Received Name: $name";
+});
