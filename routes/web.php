@@ -47,6 +47,7 @@ Route::match(['get','post'],'/feedback',function(\Illuminate\Http\Request $reque
     return view('feedback');
 });
 
+// 2.4 Passing data from View to routes
 
 Route::get('/contact',function(){
     return view('contact');
@@ -55,4 +56,10 @@ Route::get('/contact',function(){
 Route::post('submit-contact', function (Request $request){
     $name = $request->input('name');
     return "Received Name: $name";
+});
+
+// 2.5 Passing data from Routes to the view
+
+Route::get('about',function(){
+    return view('about',['name'=> 'Anderies', 'umur'=>21]);
 });
