@@ -8,6 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 2.1 Route 4 Verb
 Route::get('/test-submit', function () {
     return view("test-submit");
 });
@@ -24,6 +25,8 @@ Route::delete('/remove', function () {
     return "Send Remove Data";
 });
 
+// 2.2 Route Group
+
 Route::prefix('admin')->group(function(){
     Route::get('/dosen', function () {
         return view('admin.dosen');
@@ -39,6 +42,8 @@ Route::prefix('admin')->group(function(){
 // Route::('/admin/karyawan', function () {
 //     return view('admin.karyawan');
 // });
+
+// 2.3 Route Match
 
 Route::match(['get','post'],'/feedback',function(\Illuminate\Http\Request $request){
     if ($request->isMethod('post')){
@@ -63,3 +68,17 @@ Route::post('submit-contact', function (Request $request){
 Route::get('about',function(){
     return view('about',['name'=> 'Anderies', 'umur'=>21]);
 });
+
+// 2.6 Route Parameters
+
+Route::get('profile/{username}', function($username){
+    return view('profile', ['username' => $username]);
+});
+
+// 2.7 Route Fallback
+
+Route::fallback(function(){
+    return response()->view('fallback',[],404);
+});
+
+// 2.8 Use -> name() in laravel
